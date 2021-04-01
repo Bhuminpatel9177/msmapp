@@ -1,0 +1,32 @@
+{%load static%}
+
+<html>
+
+<head>
+
+
+<body>
+    <!-- <body style="font-size:17px"> -->
+    <div class="text-left logo p-2 px-5"> <img src="{%static 'images/logo5.png'%}" class="logo" alt=""
+            style="height: 90px;width: 225px;margin-left: 60px;"> </div>
+    <h1>
+        <center>Your Order Is Confirm Successfully!!!</center>
+    </h1>
+
+    <h1>
+        <center>Thank You ! For Order To Mihira Shopping Mall...</center>
+    </h1>
+    <br>
+    <br>
+
+    <a href="{% url 'customer_render_view' %}">
+        <center><button style="background-color: #c41919; height: 60px; width : 300px;">
+                <h2>
+                    <center> Download Your Invoice PDF</center>
+                </h2>
+            </button></center>
+    </a>
+</body>
+</head>
+
+</html>

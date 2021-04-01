@@ -1,0 +1,114 @@
+{% load static %}
+<html>
+
+<head>
+    <title>Mihira Shopping Mall</title>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mx-auto my-5 mt-5 " style="box-shadow: 0px 0px 10px #000;">
+                <div class="card " style="
+                border: 5px dotted rgba(139, 16, 16, 0.342); /* Dotted border */
+                border-radius: 15px; /* Rounded border */
+                background-color: #cababa;
+                height:570px;
+                max-width: 500px;
+                margin: auto;
+                text-align: center;
+              ">
+                    <div class="text-center">
+                        {% if data.image%}
+
+                        <img src="{{data.image.url}}" style="height:150px; width: 150px; border-radius: 50%;">
+                        {% else %}
+                        <img src="{% static 'images/12.png' %}"
+                            style="height: 150px; width: 150px; border-radius: 50%;">
+                        {% endif %}
+                    </div>
+                    <div class="col">
+                    </div>
+                    <div class="card-body">
+
+                        <style>
+                            table {
+                                border-collapse: collapse;
+                                width: 100%;
+                            }
+
+                            th,
+                            td {
+                                padding: 8px;
+                                text-align: left;
+                                border-bottom: 1px solid rgb(20, 16, 16);
+                            }
+
+                            tr:hover {
+                                background-color: #faefef;
+                            }
+                        </style>
+                    </div>
+</head>
+
+<body>
+
+    <h2>PROFILE</h2>
+
+
+    <table>
+        <tr>
+            <th>Full Name:-</th>
+            <td>{{data.fname.capitalize}} {{data.lname.capitalize}}</td>
+        </tr>
+        <tr>
+            <th>Contact Number:-</th>
+            <td>{{data.cnumber}}</td>
+        </tr>
+        <tr>
+            <th>Email:-</th>
+            <td>{{request.session.is_logged}}</td>
+        </tr>
+        <tr>
+            <th>Date Of Birth:-</th>
+            <td>{{data.dob}}</td>
+        </tr>
+        <tr>
+            <th>Gender:-</th>
+            <td>{{data.gender.capitalize}}</td>
+        </tr>
+        <tr>
+            <th>Address:-</th>
+            <td>{{data.address.capitalize}}</td>
+        </tr>
+        <tr>
+            <th>Pincode:-</th>
+            <td>{{data.pincode}}</td>
+        </tr>
+        <tr>
+            <th>City:-</th>
+            <td>{{data.city.capitalize}}</td>
+        </tr>
+
+    </table>
+    <br>
+    <a href="{% url 'cpass' %}" style="margin-left: 10px;padding: 2px;text-align: center;" class="btn btn-info">Change
+        Password</a>
+
+    <a href="{% url 'editprofile' data.id %}" style="margin-left: 10px;padding: 2px;text-align: center;"
+        class="btn btn-info">Edit Profile</a><br><br>
+
+    <a href="{% url 'index' %}"><b> Go To Home</b> </a>
+
+
+
+
+
+
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+</body>
+
+</html>

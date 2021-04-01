@@ -1,0 +1,85 @@
+<html>
+
+<head>
+    <title>Mihira Shopping Mall</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <style>
+        input[type=text] {
+            width: 30%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid black;
+            /* background-color: #e2afaf; */
+            color: rgb(155, 22, 22);
+        }
+    </style>
+
+<body>
+
+
+    {% if done %}
+    <div class="alert alert-success" role="alert">
+        <h2>{{done}}</h2>
+        <a href="{% url 'index' %}"><b> Go To Home</b> </a>
+    </div>
+    {% endif %}
+
+
+    <form method="POST" enctype="multipart/form-data">
+        <center>
+            {% csrf_token %}
+            <h4><b> Enter Email </b></h4>
+            <input type="text" name="email" placeholder="Enter email..">
+            <button type="submit/insert" name="email1" value="insert name" class="btn btn-success">
+                Send</button>
+    </form>
+    <hr style="height: 3px;color: black;background-color: black;">
+    {% if otp %}
+    <h4><b> Enter OTP</b></h4>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- <p><b> Enter email </b></p> -->
+        <input type="text" name="otp" placeholder="Enter otp..">
+        <button type="submit/insert" name="otp1" value="insert name" class="btn btn-success">
+            Submit</button>
+    </form>
+    <hr style="height: 3px;color: black;background-color: black;">
+    {% endif %}
+
+    {% if not_user %}
+    <p> {{not_user}}</p>
+    {% endif %}
+
+    {% if msg == "done" %}
+    <h3><b>Enter Email And New password </b></h3>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p> Enter Email And New Password Here... </p>
+        <input type="text" name="e1" placeholder="Enter email..">
+        <input type="text" name="c1" placeholder="Change password..">
+        <button type="submit/insert" name="change" value="insert name" class="btn btn-success">
+            Submit</button>
+    </form>
+    <hr style="height: 3px;color: black;background-color: black;">
+    {% else %}
+    <p> {{msg}}</p>
+    {% endif %}
+
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
+</body>
+</head>
+
+</html>

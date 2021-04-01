@@ -1,0 +1,864 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- Basic -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Site Metas -->
+    <title>Mihira Shopping Mall</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="{%static 'images/favicon.ico'%}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{%static 'images/apple-touch-icon.png'%}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{%static 'css/bootstrap.min.css'%}">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{%static 'css/responsive.css'%}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{%static 'css/custom.css'%}">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        input.card {
+            background-color: black;
+            color: whitesmoke;
+        }
+
+        .slidecontainer {
+            width: 100%;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 25px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+
+        .slider:hover {
+            opacity: 1;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: #ff3333;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            background: #ff3333;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <!-- Start Main Top -->
+    <div class="main-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="text-slid-box">
+                        <div id="offer-box" class="carouselTicker">
+                            <ul class="offer-box">
+                                <li>
+                                    <i class="fab fa-opencart"></i> Off 10%! Shop Now
+                                </li>
+                                <li>
+                                    <i class="fab fa-opencart"></i> Off 10%! Shop Now
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                    <div class="our-link">
+                        <ul><br>
+                            <li><a href="{% url 'register'%}">Registration</a></li>
+                            <li><a href="{% url 'login'%}">Login</a></li>
+                            <li><a href="{% url 'contact'%}">Contact Us</a></li>
+                            <li><a href="{% url 'logout'%}">Logout</a></li>
+                            <li>
+                                {% if img %}
+                                <a href="{% url 'profile' %}">
+                                    <img src="{{img.url}}" alt="Avatar"
+                                        style="width:50px;height:50px;border-radius: 50%;">
+                                </a>
+                                {% else %}
+                                <a href="{% url 'profile' %}">
+                                    <img src="{% static 'images/12.png' %}" alt="Avatar"
+                                        style="width:44px;height:44px;border-radius: 50%;">
+                                </a>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Main Top -->
+
+    <!-- Start Main Top -->
+    <header class="main-header">
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+            <div class="container">
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu"
+                        aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'index'%}"><img src="{%static 'images/logo5.png'%}"
+                            class="logo" alt="" style="height: 90px;width: 225px;margin-left: -90px;"></a>
+                </div>
+                <!-- End Header Navigation -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'index'%}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'about'%}">About Us</a></li>
+                        <li class="dropdown active megamenu-fw">
+                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Product</a>
+                            <ul class="dropdown-menu megamenu-content" role="menu">
+                                <li>
+                                    <div class="row">
+                                        <div class="col-menu col-md-2.3">
+                                            <h6 class="title">Electronics</h6>
+                                            <div class="content">
+                                                <ul class="menu-col">
+                                                    <li><a href="/subelec/Mobiles%20&%20Tablets">Mobiles & Tablets</a>
+                                                    </li>
+                                                    <li><a href="/subelec/Laptops%20&%20Computers">Laptops &
+                                                            Computers</a></li>
+                                                    <li><a href="/subelec/Televisions">Televisions</a></li>
+                                                    <li><a href="/subelec/Air%20Conditioners">Air Conditioners</a></li>
+                                                    <li><a href="/subelec/Refrigerators">Refrigerators</a></li>
+                                                    <li><a href="/subelec/Washing%20Machines">Washing Machines</a></li>
+                                                    <li><a href="/subelec/Microwaves">Microwaves</a></li>
+                                                    <li><a href="/subelec/Cameras">Cameras</a></li>
+                                                    <li><a href="/subelec/Dishwashers">Dishwashers</a></li>
+                                                    <li><a href="/subelec/Speakers%20&%20Headphones">Speakers &
+                                                            Headphones</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- end col-3 -->
+                                        <div class="col-menu col-md-2.3">
+                                            <h6 class="title">Men's Fashion</h6>
+                                            <div class="content">
+                                                <ul class="menu-col">
+                                                    <li><a href="/submen/Men's%20Clothing">Clothing</a></li>
+                                                    <li><a href="/submen/Men's%20Footwear">Footwear</a></li>
+                                                    <li><a href="/submen/Men's%20Watches">Watches</a></li>
+                                                    <li><a href="/submen/bags%20&%20Wallets">Bags & Wallets</a></li>
+                                                    <li><a href="/submen/Men's%20Sunglasses">Sunglasses</a></li>
+                                                    <li><a href="/submen/Men's%20Sportswear">Men's Sportswear</a></li>
+                                                    <li><a href="/submen/Men's%20Styling%20Devices">Men's Styling
+                                                            Devices</a></li>
+                                                    <li><a href="/submen/Men's%20Designer%20Boutique">Designer
+                                                            Boutique</a></li>
+                                                    <li><a href="/submen/Men's%20gifts">Men's gifts</a></li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- end col-3 -->
+                                        <div class="col-menu col-md-2.3">
+                                            <h6 class="title">Women's Fashion</h6>
+                                            <div class="content">
+                                                <ul class="menu-col">
+                                                    <li><a href="/subwomen/Clothing">Clothing</a></li>
+                                                    <li><a href="/subwomen/Footwear">Footwear</a></li>
+                                                    <li><a href="/subwomen/Watches">Watches</a></li>
+                                                    <li><a href="/subwomen/Handbags%20&%20Clutches">Handbags &
+                                                            Clutches</a></li>
+                                                    <li><a href="/subwomen/Sunglasses">Sunglasses</a></li>
+                                                    <li><a href="/subwomen/Women's%20Sportswear">Women's Sportswear</a>
+                                                    </li>
+                                                    <li><a href="/subwomen/Designer%20Boutique">Designer Boutique</a>
+                                                    </li>
+                                                    <li><a href="/subwomen/Women's%20gifts">Women's gifts</a></li>
+                                                    <li><a href="/subwomen/Gold%20&%20Silver%20Jewellery">Gold & Silver
+                                                            Jewellery </a>
+                                                    </li>
+                                                    <li><a href="/subwomen/Women's%20Styling%20Devices">Women's Styling
+                                                            Devices</a>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-menu col-md-2.3">
+                                            <h6 class="title">Home & Kitchen</h6>
+                                            <div class="content">
+                                                <ul class="menu-col">
+                                                    <li><a href="/subkitchen/Kitchen%20&%20Dining">Kitchen & Dining</a>
+                                                    </li>
+                                                    <li><a href="/subkitchen/Furniture">Furniture</a></li>
+                                                    <li><a href="/subkitchen/Home%20Furnishing">Home Furnishing</a></li>
+                                                    <li><a href="/subkitchen/Home%20Decor">Home Decor</a></li>
+                                                    <li><a href="/subkitchen/Garden%20&%20Outdoors">Garden &
+                                                            Outdoors</a></li>
+                                                    <li><a href="/subkitchen/Indoor%20Lighting">Indoor Lighting</a></li>
+                                                    <li><a href="/subkitchen/Home%20Improvement">Home Improvement</a>
+                                                    </li>
+                                                    <li><a href="/subkitchen/All%20Home%20&%20Kitchen">All Home &
+                                                            Kitchen</a></li>
+                                                    <li><a href="/subkitchen/Kitchen%20Appliances">Kitchen
+                                                            Appliances</a></li>
+                                                    <li><a href="/subkitchen/All%20Gifts">All Gifts</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-menu col-md-2.3">
+                                            <h6 class="title">Baby & Kids</h6>
+                                            <div class="content">
+                                                <ul class="menu-col">
+                                                    <li><a href="/subbaby/All%20Baby%20Products">All Baby Products</a>
+                                                    </li>
+                                                    <li><a href="/subbaby/All%20Toys%20&%20Games">All Toys & Games</a>
+                                                    </li>
+                                                    <li><a href="/subbaby/New%20Born%20Baby%20Products">New Born Baby
+                                                            Products</a></li>
+                                                    <li><a href="/subbaby/Kid's%20Footwear">Kid's Footwear</a></li>
+                                                    <li><a href="/subbaby/School%20Bags">School Bags</a></li>
+                                                    <li><a href="/subbaby/Kid's%20Gifts">Kid's Gifts</a></li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <!-- end col-3 -->
+
+                                    </div>
+                                    <!-- end row -->
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'cart'%}">Cart</a></li>
+                                <li><a href="{% url 'account'%}">My Account</a></li>
+                                <li><a href="{% url 'wishlist'%}">Wishlist</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'service'%}">Our Service</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'order'%}">Orders</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'history'%}">History</a></li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+
+                <!-- Start Atribute Navigation -->
+                <div class="attr-nav">
+                    <ul>
+                        <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
+                        <li class="menu"><a href="{% url 'cart'%}">
+                                <i class="fa fa-shopping-bag"></i>
+                                <span class="badge"
+                                    style="font-size: 20px;margin-left: -15px;padding-left: 7px;">{{count}}</span>
+                            </a></li>
+                    </ul>
+                </div>
+                <!-- End Atribute Navigation -->
+            </div>
+        </nav>
+        <!-- End Navigation -->
+    </header>
+    <!-- End Main Top -->
+
+    <!-- Start Top Search -->
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="top-search">
+            <div class="container">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                    <input type="text" class="form-control" placeholder="Search" name="search">
+                    <span class="input-group-addon close-search">
+                        <button name="ser1" class="btn hvr-hover" type="submit/insert" value="insert name"
+                            style="color: white;">Search</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- End Top Search -->
+
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>MEN'S FASHION</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Men's Fashion</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <!-- Start Shop Page  -->
+    <div class="shop-box-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
+                    <div class="product-categori">
+                        <div class="search-product">
+                            <form action="#">
+                                <input class="form-control" placeholder="Search here..." type="text">
+                                <button type="submit"> <i class="fa fa-search"></i> </button>
+                            </form>
+                        </div>
+                        <div class="filter-sidebar-left">
+                            <div class="title-left">
+                                <h3>Sub Categories</h3>
+                            </div>
+                            <div class="list-group list-group-collapse list-group-sm list-group-tree"
+                                id="list-group-men" data-children=".sub-men">
+                                <div class="list-group-collapse sub-men">
+                                    <a class="list-group-item list-group-item-action" href="/" data-toggle="collapse"
+                                        aria-expanded="true" aria-controls="sub-men1">
+                                        <a href="/men/MAN'S%20FASHION">--MEN'S FASHION--({{c1}}) </a>
+                                    </a>
+
+                                    <div class="collapse show" id="sub-men1" data-parent="#list-group-men">
+                                        {%for i in sub%}
+                                        <div class="list-group">
+                                            <a href="/submen/{{i.name}}"
+                                                class="list-group-item list-group-item-action active">{{i.name}}
+                                                <small class="text-muted"></small></a>
+
+                                        </div>
+                                        {%endfor%}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="filter-price-left">
+                            <div class="title-left">
+                                <h3>Price</h3>
+                            </div>
+                            <!-- set a rang slider -->
+
+                            <form method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div>
+                                    <input type="range" min="1" max="1000" value="500" class="slider" id="myRange1"
+                                        name="min">
+                                    <p>Value_min: <span id="demo1"></span></p>
+                                    <input type="range" min="1" max="3000" value="500" class="slider" id="myRange2"
+                                        name="max">
+                                    <p>Value_max: <span id="demo2"></span></p>
+                                </div>
+                        </div>
+                        <button name="price1" class="btn hvr-hover" type="submit/insert" value="insert name"
+                            style="color: azure;float:right;margin-top: -22px;">Filter</button>
+                        </form>
+                        <!-- end rang slider -->
+
+                        <div class="filter-brand-left">
+                            <div class="title-left">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
+                    <div class="right-product-box">
+                        <div class="product-item-filter row">
+                            <div class="col-12 col-sm-8 text-center text-sm-left">
+                                <div class="toolbar-sorter-right">
+                                    <span>Sort by </span>
+
+                                    <form method="POST" enctype="multipart/form-data" action="">
+                                        {% csrf_token %}
+                                        <select id="basic" class="selectpicker show-tick form-control"
+                                            style="margin-left: -42px;width: 70px;" data-placeholder="$ USD" name="se1">
+                                            <option data-display="Select">ALL Product</option>
+                                            <option value="BestSeller">BESTSELLER</option>
+                                            <option value="Sale">SALE</option>
+                                            <option value="NEW">NEW</option>
+                                            <option value="NEW Fasion">NEW FASION</option>
+                                        </select>
+
+                                        <button name="kind" class="btn hvr-hover" type="submit/insert"
+                                            value="insert name" style="color: azure;margin-left: -11px;">Filter</button>
+                                    </form>
+
+                                </div>
+                                <!-- <p>Showing all 4 results</p> -->
+                            </div>
+                        </div>
+                        <!-- ------------------------------ -->
+
+                        <div class="row">
+                            <!-- <div class="column"> -->
+                            <!-- <div class="col-menu col-md-2.5"> -->
+                            {% if se_pro %}
+                            {% for i in se_pro %}
+                            <div class="col-lg-4 col-md-6 special-grid top-featured" style="float: left;">
+
+
+                                <div class="s-12\ m-6 l-five">
+                                    <div class="column">
+                                        <!-- <div class="col-menu col-md-2.3"> -->
+                                        <div class="products-single fix">
+                                            <div class="box-img-hover" style="width:250px;height:300px;">
+                                                <div class="type-lb">
+                                                    <p class="sale">{{i.p_type}}</p>
+                                                </div>
+                                                <img src="{{i.image.url}}" class="img-fluid" alt="Image"
+                                                    style="width:250px;height:300px;">
+                                                <div class="mask-icon">
+                                                    <ul>
+                                                        <li>
+                                                            <a href="{% url 'sdetail' i.id %}" data-toggle="tooltip"
+                                                                data-placement="right" title="Views">
+                                                                <i class="fas fa-eye"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{% url 'add_wishlist' i.id %}"
+                                                                data-toggle="tooltip" data-placement="right"
+                                                                title="Likes">
+                                                                <i class="far fa-heart"></i>
+                                                            </a>
+                                                        </li>
+
+                                                    </ul>
+
+                                                    <a class="cart" href="{% url 'add_cart' i.id %}">Add to Cart</a>
+
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="why-text" style="width:250px;height:130px;">
+                                                <a href="{% url 'sdetail' i.id %}">
+                                                    <h6>
+                                                        {{i.desc|slice:"0:77"}}..
+                                                    </h6>
+                                                </a>
+                                                <h5>{{i.price}} &#8377</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                            {% elif price_pro %}
+                            {% for i in price_pro %}
+
+                            <div class="col-lg-4 col-md-6 special-grid top-featured" style="float: left;">
+                                <div class="s-12\ m-6 l-five">
+                                    <div class="column">
+                                        <!-- <div class="col-menu col-md-2.3"> -->
+                                        <div class="products-single fix">
+                                            <div class="box-img-hover" style="width:250px;height:300px;">
+                                                <div class="type-lb">
+                                                    <p class="sale">{{i.p_type}}</p>
+                                                </div>
+                                                <img src="{{i.image.url}}" class="img-fluid" alt="Image"
+                                                    style="width:250px;height:300px;">
+                                                <div class="mask-icon">
+                                                    <ul>
+                                                        <li>
+                                                            <a href="{% url 'sdetail' i.id %}" data-toggle="tooltip"
+                                                                data-placement="right" title="Views">
+
+                                                                <i class="fas fa-eye"></i>
+                                                            </a>
+                                                        </li>
+
+                                                        <li>
+                                                            <a href="{% url 'add_wishlist' i.id %}"
+                                                                data-toggle="tooltip" data-placement="right"
+                                                                title="Likes">
+                                                                <i class="far fa-heart"></i>
+                                                            </a>
+                                                        </li>
+
+                                                    </ul>
+
+                                                    <a class="cart" href="{% url 'add_cart' i.id %}">Add to Cart</a>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="why-text" style="width:250px;height:130px;">
+                                                <a href="{% url 'sdetail' i.id %}">
+                                                    <h6>
+                                                        {{i.desc|slice:"0:77"}}..
+                                                    </h6>
+                                                </a>
+                                                <h5>{{i.price}} &#8377</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+
+                            {% elif search_err %}
+                            {% if search_err %}
+                            <h1 style="text-align: center;margin-left: 277px;margin-top: 22px;"> {{search_err}}</h1>
+                            {% endif %}
+
+
+                            {% elif qs %}
+                            {% for i in qs %}
+
+                            <div class="col-lg-4 col-md-6 special-grid top-featured" style="float: left;">
+                                <div class="s-12\ m-6 l-five">
+                                    <div class="column">
+                                        <!-- <div class="col-menu col-md-2.3"> -->
+                                        <div class="products-single fix">
+                                            <div class="box-img-hover" style="width:250px;height:300px;">
+                                                <div class="type-lb">
+                                                    <p class="sale">{{i.p_type}}</p>
+                                                </div>
+                                                <img src="{{i.image.url}}" class="img-fluid" alt="Image"
+                                                    style="width:250px;height:300px;">
+                                                <div class="mask-icon">
+                                                    <ul>
+                                                        <li>
+                                                            <a href="{% url 'sdetail' i.id %}" data-toggle="tooltip"
+                                                                data-placement="right" title="Views">
+
+                                                                <i class="fas fa-eye"></i>
+                                                            </a>
+                                                        </li>
+
+                                                        <li>
+                                                            <a href="{% url 'add_wishlist' i.id %}"
+                                                                data-toggle="tooltip" data-placement="right"
+                                                                title="Likes">
+                                                                <i class="far fa-heart"></i>
+                                                            </a>
+                                                        </li>
+
+                                                    </ul>
+
+                                                    <a class="cart" href="{% url 'add_cart' i.id %}">Add to Cart</a>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="why-text" style="width:250px;height:130px;">
+                                                <a href="{% url 'sdetail' i.id %}">
+                                                    <h6>
+                                                        {{i.desc|slice:"0:77"}}..
+                                                    </h6>
+                                                </a>
+                                                <h5>{{i.price}} &#8377</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+
+                            {% else %}
+                            {% for i in prod %}
+                            <div class="col-lg-4 col-md-6 special-grid top-featured" style="float: left;">
+                                <div class="s-12\ m-6 l-five">
+                                    <div class="column">
+                                        <!-- <div class="col-menu col-md-2.3"> -->
+                                        <div class="products-single fix">
+                                            <div class="box-img-hover" style="width:250px;height:300px;">
+                                                <div class="type-lb">
+                                                    <p class="sale">{{i.p_type}}</p>
+                                                </div>
+                                                <img src="{{i.image.url}}" class="img-fluid" alt="Image"
+                                                    style="width:250px;height:300px;">
+                                                <div class="mask-icon">
+                                                    <ul>
+                                                        <li>
+                                                            <a href="{% url 'sdetail' i.id %}" data-toggle="tooltip"
+                                                                data-placement="right" title="Views">
+                                                                <i class="fas fa-eye"></i>
+                                                            </a>
+                                                        </li>
+
+                                                        <li>
+                                                            <a href="{% url 'add_wishlist' i.id %}"
+                                                                data-toggle="tooltip" data-placement="right"
+                                                                title="Likes">
+                                                                <i class="far fa-heart"></i>
+                                                            </a>
+                                                        </li>
+
+                                                    </ul>
+
+                                                    <a class="cart" href="{% url 'add_cart' i.id %}">Add to Cart</a>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="why-text" style="width:250px;height:130px;">
+                                                <a href="{% url 'sdetail' i.id %}">
+                                                    <h6>
+                                                        {{i.desc|slice:"0:77"}}..
+                                                    </h6>
+                                                </a>
+                                                <h5>{{i.price}} &#8377</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <!-- -------------------------------------- -->
+
+
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <!-- End Shop Page -->
+
+    <!-- Start Instagram Feed  -->
+    <div class="instagram-box">
+        <div class="main-instagram owl-carousel owl-theme">
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="{%static 'images/instagram-img-01.jpg'%}" alt="" />
+                    <div class="hov-in">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="{%static 'images/instagram-img-02.jpg'%}" alt="" />
+                    <div class="hov-in">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="{%static 'images/instagram-img-03.jpg'%}" alt="" />
+                    <div class="hov-in">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="{%static 'images/instagram-img-04.jpg'%}" alt="" />
+                    <div class="hov-in">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="{%static 'images/instagram-img-05.jpg'%}" alt="" />
+                    <div class="hov-in">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="{%static 'images/instagram-img-06.jpg'%}" alt="" />
+                    <div class="hov-in">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="{%static 'images/instagram-img-07.jpg'%}" alt="" />
+                    <div class="hov-in">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="{%static 'images/instagram-img-08.jpg'%}" alt="" />
+                    <div class="hov-in">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="{%static 'images/instagram-img-09.jpg'%}" alt="" />
+                    <div class="hov-in">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="{%static 'images/instagram-img-05.jpg'%}" alt="" />
+                    <div class="hov-in">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Instagram Feed  -->
+
+
+    <!-- Start Footer  -->
+    <footer>
+        <div class="footer-main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-widget">
+                            <h4>About Mihira Shopping Mall</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt
+                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            </p>
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-link">
+                            <h4>Information</h4>
+                            <ul>
+                                <li><a href="{% url 'about'%}">About Us</a></li>
+                                <li><a href="{% url 'service'%}">Our Service</a></li>
+                                <li><a href="{% url 'account'%}">My Account</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-link-contact">
+                            <h4>Contact Us</h4>
+                            <ul>
+                                <li>
+                                    <p><i class="fas fa-map-marker-alt"></i>Address:44,Devbhumi Socity <br>Hirawadi
+                                        Road,<br> Ahmedabad-382345 </p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-phone-square"></i>Phone:+91-9913033571</a></p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-envelope"></i>Email:mihirashoppingmall@gmail.com</a>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer  -->
+
+    <!-- Start copyright  -->
+    <div class="footer-copyright">
+        <p class="footer-company">All Rights Reserved. &copy; 2021 <a href="#">Mihira Shopping Mall</a> Design By : html
+            design</a>
+    </div>
+    <!-- End copyright  -->
+
+    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+    <script type="text/javascript">
+        var slider1 = document.getElementById("myRange1");
+        var slider2 = document.getElementById("myRange2");
+        var output1 = document.getElementById("demo1");
+        var output2 = document.getElementById("demo2");
+
+
+
+        output1.innerHTML = slider1.value;
+        output2.innerHTML = slider2.value;
+
+        slider1.oninput = function () {
+            output1.innerHTML = this.value;
+        }
+        slider2.oninput = function () {
+            output2.innerHTML = this.value;
+        }
+    </script>
+
+    <!-- ALL JS FILES -->
+    <script src="{%static 'js/jquery-3.2.1.min.js'%}"></script>
+    <script src="{%static 'js/popper.min.js'%}"></script>
+    <script src="{%static 'js/bootstrap.min.js'%}"></script>
+    <!-- ALL PLUGINS -->
+    <script src="{%static 'js/jquery.superslides.min.js'%}"></script>
+    <script src="{%static 'js/bootstrap-select.js'%}"></script>
+    <script src="{%static 'js/inewsticker.js'%}"></script>
+    <script src="{%static 'js/bootsnav.js.'%}"></script>
+    <script src="{%static 'js/images-loded.min.js'%}"></script>
+    <script src="{%static 'js/isotope.min.js'%}"></script>
+    <script src="{%static 'js/owl.carousel.min.js'%}"></script>
+    <script src="{%static 'js/baguetteBox.min.js'%}"></script>
+    <script src="{%static 'js/jquery-ui.js'%}"></script>
+    <script src="{%static 'js/jquery.nicescroll.min.js'%}"></script>
+    <script src="{%static 'js/form-validator.min.js'%}"></script>
+    <script src="{%static 'js/contact-form-script.js'%}"></script>
+    <script src="{%static 'js/custom.js'%}"></script>
+</body>
+
+</html>

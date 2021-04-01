@@ -1,0 +1,319 @@
+<html>
+
+<head>
+  <title>Mihira Shopping Mall</title>
+
+  <style>
+    .checked {
+      color: orange;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .img-zoom-container {
+      position: relative;
+    }
+
+    .img-zoom-lens {
+      position: absolute;
+      border: 1px solid #d4d4d4;
+      /*set the size of the lens:*/
+      width: 55px;
+      height: 55px;
+    }
+
+    .img-zoom-result {
+      border: 1px solid #d4d4d4;
+      /*set the size of the result div:*/
+      width: 477px;
+      height: 400px;
+    }
+  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script>
+    function imageZoom(imgID, resultID) {
+      var img, lens, result, cx, cy;
+      img = document.getElementById(imgID);
+      result = document.getElementById(resultID);
+      /*create lens:*/
+      lens = document.createElement("DIV");
+      lens.setAttribute("class", "img-zoom-lens");
+      /*insert lens:*/
+      img.parentElement.insertBefore(lens, img);
+      /*calculate the ratio between result DIV and lens:*/
+      cx = result.offsetWidth / lens.offsetWidth;
+      cy = result.offsetHeight / lens.offsetHeight;
+      /*set background properties for the result DIV:*/
+      result.style.backgroundImage = "url('" + img.src + "')";
+      result.style.backgroundSize = (img.width * cx) + "px " + (img.height * cy) + "px";
+      /*execute a function when someone moves the cursor over the image, or the lens:*/
+      lens.addEventListener("mousemove", moveLens);
+      img.addEventListener("mousemove", moveLens);
+      /*and also for touch screens:*/
+      lens.addEventListener("touchmove", moveLens);
+      img.addEventListener("touchmove", moveLens);
+      function moveLens(e) {
+        var pos, x, y;
+        /*prevent any other actions that may occur when moving over the image:*/
+        e.preventDefault();
+        /*get the cursor's x and y positions:*/
+        pos = getCursorPos(e);
+        /*calculate the position of the lens:*/
+        x = pos.x - (lens.offsetWidth / 1.2);
+        y = pos.y - (lens.offsetHeight / 1.2);
+        /*prevent the lens from being positioned outside the image:*/
+        if (x > img.width - lens.offsetWidth) { x = img.width - lens.offsetWidth; }
+        if (x < 0) { x = 0; }
+        if (y > img.height - lens.offsetHeight) { y = img.height - lens.offsetHeight; }
+        if (y < 0) { y = 0; }
+        /*set the position of the lens:*/
+        lens.style.left = x + "px";
+        lens.style.top = y + "px";
+        /*display what the lens "sees":*/
+        result.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
+      }
+      function getCursorPos(e) {
+        var a, x = 0, y = 0;
+        e = e || window.event;
+        /*get the x and y positions of the image:*/
+        a = img.getBoundingClientRect();
+        /*calculate the cursor's x and y coordinates, relative to the image:*/
+        x = e.pageX - a.left;
+        y = e.pageY - a.top;
+        /*consider any page scrolling:*/
+        x = x - window.pageXOffset;
+        y = y - window.pageYOffset;
+        return { x: x, y: y };
+      }
+    }
+  </script>
+
+
+</head>
+
+<body>
+  <!--Section: Block Content-->
+
+
+
+  <div style="height: 444px;width: 440px;float: left;margin-top: 10px;margin-left: 22px;">
+
+    <div id="mdb-lightbox-ui"></div>
+
+    <div class="mdb-lightbox">
+
+      <div class="row product-gallery mx-1">
+
+        <div class="col-12 mb-0">
+          <!-- <figure class="view overlay rounded z-depth-1 main-img"> -->
+
+
+          <div class="img-zoom-container">
+            <img id="myimage" src="{{img.url}}" width="400" height="400">
+
+          </div>
+
+          <!-- <img src="{{img.url}}" style="height: 300px;width: 333px;margin-top: 7px;"
+                    class="img-fluid z-depth-1"> -->
+          </a>
+          </figure>
+
+
+
+
+          <!-- <div class="col-12">
+              <div class="row">
+                
+               
+                3
+                <div class="col-3">
+                  <div class="view overlay rounded z-depth-1 gallery-item">
+                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg"
+                      class="img-fluid">
+                    <div class="mask rgba-white-slight"></div>
+                  </div>
+                </div>
+              </div> -->
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div style="height: 700px;width: 500px;float: left;margin-top: 10px;margin-left: 10px;">
+
+    <h5>{{name}}</h5>
+    <p class="mb-2 text-muted text-uppercase small">{{cat}}</p>
+
+    <p><span class="mr-1"><strong>${{price}}</strong></span></p>
+    <p class="pt-1">{{desc}}</p>
+    <span class="fa fa-star checked" style="font-size: 22px;"></span>
+    <span class="fa fa-star checked" style="font-size: 22px;"></span>
+    <span class="fa fa-star checked" style="font-size: 22px;"></span>
+    <span class="fa fa-star checked" style="font-size: 22px;"></span>
+    <span class="fa fa-star" style="font-size: 22px;"></span>
+
+    <div class="table-responsive" style="float: left;">
+      <table class="table table-sm table-borderless mb-0">
+        <tbody>
+          <tr>
+            <th class="pl-0 w-25" scope="row"><strong>Model</strong></th>
+            <td>{{name}}</td>
+          </tr>
+          <tr>
+            <th class="pl-0 w-25" scope="row"><strong>Color</strong></th>
+            <td>Black</td>
+          </tr>
+          <tr>
+            <th class="pl-0 w-25" scope="row"><strong>Delivery</strong></th>
+            <td>India</td>
+          </tr>
+          <tr>
+            <th class="pl-0 w-25" scope="row"><strong>View</strong></th>
+            <td>{{view}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr>
+
+    <div class="table-responsive mb-2">
+      <table class="table table-sm table-borderless">
+        <tbody>
+          <tr>
+            <td class="pl-0 pb-0 w-25">Quantity</td>
+            <td class="pb-0">Select size</td>
+          </tr>
+          <tr>
+            <!-- <td class="pl-0">
+                  <div class="def-number-input number-input safari_only mb-0">
+                    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                      class="minus" style="font-weight: bold;">-</button>
+                    <input class="quantity" min="0" name="quantity" value="1" type="number">
+                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                      class="plus" style="font-weight: bold;">+</button>
+                  </div>
+                </td> -->
+            <td>
+              <br>
+
+              <div class="mt-1">
+                <div class="form-check form-check-inline pl-0">
+                  <input type="radio" class="form-check-input" id="small" name="materialExampleRadios" checked>
+                  <label class="form-check-label small text-uppercase card-link-secondary" for="small">Small</label>
+                </div>
+                <div class="form-check form-check-inline pl-0">
+                  <input type="radio" class="form-check-input" id="medium" name="materialExampleRadios">
+                  <label class="form-check-label small text-uppercase card-link-secondary" for="medium">Medium</label>
+                </div>
+                <div class="form-check form-check-inline pl-0">
+                  <input type="radio" class="form-check-input" id="large" name="materialExampleRadios">
+                  <label class="form-check-label small text-uppercase card-link-secondary" for="large">Large</label>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <button type="button" class="btn btn-primary btn-md mr-1 mb-2" style="float: left;">Buy now</button>
+
+
+      <input type="number" id="quantity" name="quantity" min="1" max="100"
+        style="float: left;height: 40px;width: 97px;font-weight: bold;margin-left: 22px;" value="1"></input>
+      <button type="submit/insert" value="insert name" class="btn btn-success"
+        style="width: 109px;height: 45px;margin-left: 10px;">Add To Cart</button>
+    </form>
+  </div>
+  </div>
+
+
+  <div style="height: 700px;width: 500px;float: left;margin-top: 10px;margin-left: 10px;">
+    <div class="img-zoom-container">
+      <div id="myresult" class="img-zoom-result" width="400" height="400"></div>
+    </div>
+  </div>
+
+
+  <script type="text/javascript">
+    function imageZoom(imgID, resultID) {
+      var img, lens, result, cx, cy;
+      img = document.getElementById(imgID);
+      result = document.getElementById(resultID);
+      /*create lens:*/
+      lens = document.createElement("DIV");
+      lens.setAttribute("class", "img-zoom-lens");
+      /*insert lens:*/
+      img.parentElement.insertBefore(lens, img);
+      /*calculate the ratio between result DIV and lens:*/
+      cx = result.offsetWidth / lens.offsetWidth;
+      cy = result.offsetHeight / lens.offsetHeight;
+      /*set background properties for the result DIV:*/
+      result.style.backgroundImage = "url('" + img.src + "')";
+      result.style.backgroundSize = (img.width * cx) + "px " + (img.height * cy) + "px";
+      /*execute a function when someone moves the cursor over the image, or the lens:*/
+      lens.addEventListener("mousemove", moveLens);
+      img.addEventListener("mousemove", moveLens);
+      /*and also for touch screens:*/
+      lens.addEventListener("touchmove", moveLens);
+      img.addEventListener("touchmove", moveLens);
+      function moveLens(e) {
+        var pos, x, y;
+        /*prevent any other actions that may occur when moving over the image:*/
+        e.preventDefault();
+        /*get the cursor's x and y positions:*/
+        pos = getCursorPos(e);
+        /*calculate the position of the lens:*/
+        x = pos.x - (lens.offsetWidth / 2);
+        y = pos.y - (lens.offsetHeight / 2);
+        /*prevent the lens from being positioned outside the image:*/
+        if (x > img.width - lens.offsetWidth) { x = img.width - lens.offsetWidth; }
+        if (x < 0) { x = 0; }
+        if (y > img.height - lens.offsetHeight) { y = img.height - lens.offsetHeight; }
+        if (y < 0) { y = 0; }
+        /*set the position of the lens:*/
+        lens.style.left = x + "px";
+        lens.style.top = y + "px";
+        /*display what the lens "sees":*/
+        result.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
+      }
+      function getCursorPos(e) {
+        var a, x = 0, y = 0;
+        e = e || window.event;
+        /*get the x and y positions of the image:*/
+        a = img.getBoundingClientRect();
+        /*calculate the cursor's x and y coordinates, relative to the image:*/
+        x = e.pageX - a.left;
+        y = e.pageY - a.top;
+        /*consider any page scrolling:*/
+        x = x - window.pageXOffset;
+        y = y - window.pageYOffset;
+        return { x: x, y: y };
+      }
+    }
+
+    imageZoom("myimage", "myresult");
+
+    $(document).ready(function () {
+      // MDB Lightbox Init
+      $(function () {
+        $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
+      });
+    });
+
+  </script>
+</body>
+
+</html>

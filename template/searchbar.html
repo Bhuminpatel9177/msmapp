@@ -1,0 +1,16 @@
+{{error}}
+{% if post %}
+<center>
+    <h1>Search Result Found</h1>
+</center>
+<br>
+{% for i in post %}
+<center>
+    <h2><a href="/index/{{i.slug}}">{{i.subcategory}}:{{i.snipet}}</a></h2>
+</center>
+{% end for %}
+{% else %}
+<center>
+    <h1>nothing found bitch</h1>
+</center>
+{% endif %}
